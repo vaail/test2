@@ -10,6 +10,7 @@ services:
       - ./logs/nginx:/var/log/nginx
       - ./.docker/nginx/application.conf:/etc/nginx/conf.d/application.conf
       - ./application:/app
+      - ./frontend:/frontend
 
   fpm:
     build:

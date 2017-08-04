@@ -1,0 +1,45 @@
+<div ng-if="!$ctrl.building">
+    <h1>Loading...</h1>
+</div>
+<div ng-if="$ctrl.building">
+    <h1>{{$ctrl.building.name}}</h1>
+    <table>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td class="block black"></td>
+                        <td class="block black" ng-repeat-start="lift in $ctrl.lifts"></td>
+                        <td class="block black" ng-repeat-end></td>
+                        <td class="block black"></td>
+                        <td class="block black"></td>
+                        <td class="block black"></td>
+                        <td class="block black"></td>
+                    </tr>
+                    <tr ng-repeat="t in $ctrl.tmp">
+                        <td class="block gray"></td>
+                        <td class="block" ng-repeat-start="lift in $ctrl.lifts" ng-class="{green: (lift.currentFloor === ($ctrl.tmp.length-$parent.$index)), gray: (lift.availableFloors.indexOf($ctrl.tmp.length-$parent.$index)=== -1)}">{{$ctrl.tmp.length-$parent.$index}}</td>
+                        <td class="block gray" ng-repeat-end></td>
+                        <td class="block gray" ng-if=""></td>
+                        <td class="block red" ng-click="$ctrl.order($ctrl.tmp.length-$index)">O</td>
+                        <td class="block red" ng-click="$ctrl.order($ctrl.tmp.length-$index, null, 'up')" ng-class="{silver: ($ctrl.tmp.length-$index === $ctrl.tmp.length)}">UP</td>
+                        <td class="block red" ng-click="$ctrl.order($ctrl.tmp.length-$index, null, 'down')" ng-class="{silver: ($ctrl.tmp.length-$index === 1)}">DOWN</td>
+                        <td class="block red" ng-form style="width: 64px;"><input size="3" ng-model="$form.targetFloor"><button ng-disabled="!$form.targetFloor" ng-click="$ctrl.order($ctrl.tmp.length-$index, $form.targetFloor);$form.targetFloor=null;">GO</button></td>
+                    </tr>
+                    <tr>
+                        <td class="block black"></td>
+                        <td class="block black" ng-repeat-start="lift in $ctrl.lifts"></td>
+                        <td class="block black" ng-repeat-end></td>
+                        <td class="block black"></td>
+                        <td class="block black"></td>
+                        <td class="block black"></td>
+                        <td class="block black"></td>
+                    </tr>
+                </table>
+            </td>
+            <td style="vertical-align: top;">
+                <pre class="silver" style="border: 1px solid gray;">{{$ctrl.log}}</pre>
+            </td>
+        </tr>
+    </table>
+</div>
