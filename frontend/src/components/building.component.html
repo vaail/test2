@@ -21,9 +21,9 @@
                         <td class="block" ng-repeat-start="lift in $ctrl.lifts" ng-class="{green: (lift.currentFloor === ($ctrl.tmp.length-$parent.$index)), gray: (lift.availableFloors.indexOf($ctrl.tmp.length-$parent.$index)=== -1)}">{{$ctrl.tmp.length-$parent.$index}}</td>
                         <td class="block gray" ng-repeat-end></td>
                         <td class="block gray" ng-if=""></td>
-                        <td class="block red" ng-click="$ctrl.order($ctrl.tmp.length-$index)">O</td>
-                        <td class="block red" ng-click="$ctrl.order($ctrl.tmp.length-$index, null, 'up')" ng-class="{silver: ($ctrl.tmp.length-$index === $ctrl.tmp.length)}">UP</td>
-                        <td class="block red" ng-click="$ctrl.order($ctrl.tmp.length-$index, null, 'down')" ng-class="{silver: ($ctrl.tmp.length-$index === 1)}">DOWN</td>
+                        <td class="block red"><button ng-click="$ctrl.order($ctrl.tmp.length-$index)">O</button></td>
+                        <td class="block red"><button ng-click="$ctrl.order($ctrl.tmp.length-$index, null, 'up')" ng-disabled="($ctrl.tmp.length-$index === $ctrl.tmp.length)">UP</button></td>
+                        <td class="block red"><button  ng-click="$ctrl.order($ctrl.tmp.length-$index, null, 'down')" ng-disabled="($ctrl.tmp.length-$index === 1)">DOWN</button></td>
                         <td class="block red" ng-form style="width: 64px;"><input size="3" ng-model="$form.targetFloor"><button ng-disabled="!$form.targetFloor" ng-click="$ctrl.order($ctrl.tmp.length-$index, $form.targetFloor);$form.targetFloor=null;">GO</button></td>
                     </tr>
                     <tr>
