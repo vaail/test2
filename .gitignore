@@ -1,0 +1,6 @@
+.idea
+.DS_STORE
+logs/fpm/
+!logs/fpm/.gitkeep
+logs/nginx/
+!logs/nginx/.gitkeep

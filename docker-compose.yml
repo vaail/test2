@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  nginx:
+    build:
+      context: ./.docker/nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./logs/nginx:/var/log/nginx
+      - ./.docker/nginx/application.conf:/etc/nginx/conf.d/application.conf
+      - ./application:/app
+
+  fpm:
+    build:
+      context: ./.docker/fpm
+    volumes:
+      - ./logs/fpm:/usr/local/var/log/php-fpm
+      - ./.docker/fpm/php-fpm.conf:/usr/local/etc/php-fpm.d/zzz-docker.conf
+      - ./application:/app
+    expose:
+      - "9000"
